@@ -1,3 +1,4 @@
+import { Observable } from 'rxjs';
 import { Course } from './../model/course';
 import { Component, OnInit } from '@angular/core';
 import { CoursesService } from '../services/courses.service';
@@ -9,13 +10,13 @@ import { CoursesService } from '../services/courses.service';
 })
 export class CoursesComponent implements OnInit {
 
-  courses: Course[] = []
+  courses: Observable<Course[]>;
 
 
   displayedColumns = ['name', 'category'];
 
   constructor(private courseService: CoursesService) {
-    this.courses = courseService.findAll()
+    this.courses = this.courseService.findAll()
   }
 
   ngOnInit(): void {
